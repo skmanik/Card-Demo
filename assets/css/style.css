@@ -130,7 +130,7 @@ below the parent element by using top: 100% */
 }
 
 /* EXTRA ANIMATIONS ARE BELOW. not mandatory. adds small blink animations to elements sliding in and out
-(to mimic Petfinder). these classes are added to HTML to take effect */
+(to mimic PetFinder). these classes are added to HTML to take effect */
 .blink-in {
     opacity: 0;
     transition: .25s ease-in-out 0.05s;
