@@ -1,0 +1,151 @@
+/* ===============================
+======= general formatting =======
+=============================== */
+
+/* IMPORTANT: make sure you use this CSS to make all the elements on the page
+use border-box sizing. that means you can set widths and heights and not recalculate
+when you add padding. vendor prefixes added to make cross-browser compatible 
+
+note: css frameworks usually have this property by default */
+*, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* ignore: general styling */
+html, body, ul, li, h1, h2, h3, h4 {
+    margin: 0;
+    padding: 0;
+}
+
+/* ignore: general styling */
+html, body {
+    background: #f0f0f0;
+    height: 100%;
+}
+
+/* ignore: general styling */
+h1 {
+    font-weight: bold;
+}
+
+/* ignore: general styling */
+.main {
+    margin: 30px;
+}
+
+/* ignore: general styling */
+.card-img {
+    width: 100%;
+    position: relative;
+    display: block;
+}
+
+/* ignore: general styling */
+.just-title {
+    position: relative;
+    background-color: #fff;
+    text-align: center;
+    padding: 16px 10px 22px;
+}
+
+/* ignore: general styling */
+.just-title h1 {
+    font-size: 20px;
+}
+
+/* ignore: general styling */
+.hidden-body h1 {
+    text-align: center;
+    margin-top: 5px;
+    padding: 16px 10px 22px;
+    font-size: 20px;
+}
+
+/* ignore: general styling */
+.hidden-body img {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+
+/* ==============================================
+======= THE ACTUAL JUICY STUFF: READ THIS =======
+============================================== */
+
+/* IMPORTANT: the PARENT element that hides the sliding card */
+.card-parent {
+    /* IMPORTANT: this element must HIDE the card that slides in (which is sitting below the parent),
+    so we use overflow: hidden */
+    overflow: hidden;
+
+    /* IMPORTANT: position: relative is needed so the card element is positioned IN RELATION
+    TO THIS ELEMENT and not something else */
+    position: relative;
+    z-index: 1;
+
+    border-radius: 8px;
+    background: #e3dcff;
+    cursor: pointer;
+}
+
+/* IMPORTANT: the card that slides in; position: absolute is used to make the card hide
+below the parent element by using top: 100% */
+.hidden-body {
+    /* IMPORTANT: this tells the card to take up the same width and height as the parent element. */
+    width: 100%;
+    height: 100%;
+
+    /* IMPORTANT: this tells the card to hide COMPLETELY below the parent element by using
+    top: 100%. this value has to match the height value. */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 2;
+    
+    padding: 50px;
+    border-radius: 8px 8px 0 0;
+    background: #fff;
+    /* IMPORTANT: this tells the card to take .15s to transition in and out */
+    transition: .15s ease-in-out;
+}
+
+/* ==============================================
+======== THE ACTUAL ANIMATION: READ THIS ========
+============================================== */
+
+/* IMPORTANT: tells the card to come up when the parent element is hovered over */
+.card-parent:hover .hidden-body {
+    /* IMPORTANT: these are vendor prefixes. needed to make this
+    property cross-browser compatible */
+    -webkit-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+
+    /* IMPORTANT: this transform property tells the card to move up vertically by 100%
+    from its current position when the parent element is hovered over (see
+    selector for this CSS) */
+    transform: translateY(-100%);
+}
+
+/* EXTRA ANIMATIONS ARE BELOW. not mandatory. adds small blink animations to elements sliding in and out
+(to mimic Petfinder). these classes are added to HTML to take effect */
+.blink-in {
+    opacity: 0;
+    transition: .25s ease-in-out 0.05s;
+}
+
+.blink-out {
+    opacity: 1;
+    transition: .15s ease-in-out;
+}
+
+/* hover declaration for the above extra animations */
+.card-parent:hover .blink-in {
+    opacity: 1;
+}
+
+.card-parent:hover .blink-out {
+    opacity: 0;
+}
